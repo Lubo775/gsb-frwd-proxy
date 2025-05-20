@@ -1,0 +1,5 @@
+- type: tcp
+  name: activegate_up
+  schedule: "@every 5s"
+  hosts: ["localhost"]
+  ports: [9999]

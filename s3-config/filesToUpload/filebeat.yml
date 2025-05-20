@@ -1,0 +1,65 @@
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+processors:
+- add_cloud_metadata: ~
+- add_host_metadata:
+    netinfo.enabled: true
+- add_locale:
+    format: offset
+fields_under_root: true
+fields:
+  vwg:
+    platform:
+      name: "${PLT_NAME:-odp}"
+      organizational_scope: "${ORG_SCOPE}"
+      organisational_scope: "${ORG_SCOPE}"
+      environment: "${ENVIRONMENT}"
+      functional_scope: "${FUNC_SCOPE}"
+      layer: infrastructure
+    module:
+      name: "${MODULE_NAME}"
+      version: "${APPLICATION_VERSION}"
+      submodule_name: "${APPLICATION_ID}"
+      submodule_version: "${SUBMODULE_VERSION:-default}"
+    org:
+      sc:
+        ci_name: "${SC_CI_NAME:-needs_to_be_set}"
+        assigmentgroup: "${SC_ASS_GROUP:-needs_to_be_set}"
+      schema_version: 1.0
+      team:
+        mailbox: "${OWNEREMAIL}"
+    network: "${NETWORK}"
+    projectid: "${PROJECTID}"
+    stage: "${STAGE}"
+    tier: "${TIER}"
+output.elasticsearch:
+  hosts:
+  - ${ELASTICSEARCH_HOST}
+  username: ${ELASTICSEARCH_USER}
+  password: ${ELASTICSEARCH_PWD}
+  compression_level: 3
+  worker: 2
+  bulk_max_size: 1024
+  index: filebeat-infrastructure-default
+  ssl:
+    verification_mode: none
+setup.template.enabled: false
+setup.ilm.enabled: false
+setup.dashboards.enabled: false
+setup.kibana:
+  host: ${KIBANA_HOST}
+  username: ${KIBANA_USER}
+  password: ${KIBANA_PWD}
+  ssl.verification_mode: none
+monitoring:
+  enabled: true
+logging:
+  level: info
+  to_files: true
+  files:
+    path: /var/log/filebeat
+    name: filebeat
+    keepfiles: 5
+    rotateeverybytes: 10485760
+    permissions: 0644

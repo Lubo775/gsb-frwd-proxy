@@ -1,0 +1,5 @@
+- type: tcp
+  name: gsbproxy_up
+  schedule: "@every 5s"
+  hosts: ["localhost"]
+  ports: [80,443]
