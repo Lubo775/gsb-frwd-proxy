@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+	<soap:Header>
+		<wsa:MessageID xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">@@MessageID@@</wsa:MessageID>
+		<wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+		<wsa:Action>@@Action@@</wsa:Action>
+		<wsa:RelatesTo>@@RelatesTo@@</wsa:RelatesTo>
+	</soap:Header>
+	<soap:Body>
+		<soap:Fault>
+			<faultcode>soap:Client.security.9007.E</faultcode>
+			<faultstring>Not authorized</faultstring>
+			<faultactor>CSP-IA-GW@IDPA-QB0-IN</faultactor>
+			<detail>
+				<com:Fault xmlns:bas="http://xmldefs.volkswagenag.com/DD/BasicTypes" xmlns:com="http://xmldefs.volkswagenag.com/DD/Commons">
+					<com:FaultBasic>
+						<com:FaultSystem>WSG</com:FaultSystem>
+						<com:FaultClass>security</com:FaultClass>
+						<com:FaultCode>9007</com:FaultCode>
+						<com:FaultLevel>E</com:FaultLevel>
+						<com:FaultID/>
+						<com:FaultTimestamp>2018-12-19T16:37:58+01:00</com:FaultTimestamp>
+						<com:FaultDescription languageID="en">Not authorized</com:FaultDescription>
+						<com:FaultCodeDetails>
+							<com:Param>
+								<com:ParamName>Content-Type</com:ParamName>
+								<com:ParamValue>text/xml; charset=&quot;utf-8&quot;</com:ParamValue>
+							</com:Param>
+						</com:FaultCodeDetails>
+						<com:FaultSystemDetails>
+							<com:Param>
+								<com:ParamName>Application</com:ParamName>
+								<com:ParamValue>MOCK-GSB-PROXY</com:ParamValue>
+							</com:Param>
+							<com:Param>
+								<com:ParamName>Service</com:ParamName>
+								<com:ParamValue>@@To@@</com:ParamValue>
+							</com:Param>
+						</com:FaultSystemDetails>
+						<com:FaultReason>Failed to authorize provided credentials</com:FaultReason>
+					</com:FaultBasic>
+				</com:Fault>
+			</detail>
+		</soap:Fault>
+	</soap:Body>
+</soap:Envelope>

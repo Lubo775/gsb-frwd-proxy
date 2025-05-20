@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+		<wsa:MessageID>@@MessageID@@</wsa:MessageID>
+		<wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+		<wsa:Action>@@Action@@</wsa:Action>
+		<wsa:RelatesTo>@@RelatesTo@@</wsa:RelatesTo>
+	</soapenv:Header>
+	<soapenv:Body>
+		<ns2:AcknowledgeAliveTest xmlns="http://xmldefs.volkswagenag.com/DD/Commons" xmlns:ns2="@@Namespace@@">
+			<AliveTestAcknowledgement>
+				<ServiceProvider>
+					<Hostname>@@Hostname@@</Hostname>
+					<Name>@@ProviderName@@</Name>
+					<Version>@@Version@@</Version>
+					<Vendor>@@Vendor@@</Vendor>
+				</ServiceProvider>
+				<ServiceInfo>
+					<Name>@@ServiceName@@</Name>
+					<Revision>0.8.1.5</Revision>
+					<Operation>ProcessAliveTest</Operation>
+				</ServiceInfo>
+			</AliveTestAcknowledgement>
+		</ns2:AcknowledgeAliveTest>
+	</soapenv:Body>
+</soapenv:Envelope>

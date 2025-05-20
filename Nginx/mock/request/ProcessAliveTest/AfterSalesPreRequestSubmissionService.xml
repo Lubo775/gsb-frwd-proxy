@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<WSCorIDSOAPHeader CorID="5CA354CFC0A854A23A3E4AFFB60C7769,1:2,0,0,,,AgAAAglIQgAAAAFGAAAAAQAAABFqYXZhLnV0aWwuSGFzaE1hcAAAAARIQgAAAAJGAAAAAgAAABBqYXZhLmxhbmcuU3RyaW5nAApUeG5UcmFjZUlkSEIAAAADRQAAAAIAJDVDNTU5Q0Y4QzBBODU0QTIzQTNFNEFGRjAyOUE0QjkwMTkwOUhCAAAABEUAAAACABNDYWxsZXIgQ29tcG9uZW50IElESEIAAAAFRQAAAAIAATNIQgAAAAZFAAAAAgAPQ2FsbGVyVGltZXN0YW1wSEIAAAAHRQAAAAIADTE1MzkxNTI1MDA5MzBIQgAAAAhFAAAAAgARVXBzdHJlYW1HVUlEQ2FjaGVIQgAAAAlGAAAAAwAAABNqYXZhLnV0aWwuQXJyYXlMaXN0AAAABUhCAAAACkUAAAACACA1QzlFQzBEOEMwQTg1NEEyM0EzRTRBRkZBMDU5NjY3MEhCAAAAC0UAAAACACA1QzlBMkNGOEMwQTg1NEEyM0EzRTRBRkZCQkM2MkYwOUhCAAAADEUAAAACACA1Qzk1OTkwMEMwQTg1NEEyM0EzRTRBRkZCODEwMDQ0MEhCAAAADUUAAAACACA1QzkxMDUzREMwQTg1NEEyM0EzRTRBRkY1NkE4MTEyOEhCAAAADkUAAAACACA1QzhDNzE2QUMwQTg1NEEyM0EzRTRBRkY5QUMwQzc1MQ==" xmlns="http://www.ca.com/apm"/>
+		<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing">ws://volkswagenag.com/Retail/AfterSalesPreRequestSubmissionService/V1</wsa:To>
+		<wsa:Action SOAP-ENV:mustUnderstand="1" xmlns:wsa="http://www.w3.org/2005/08/addressing">http://xmldefs.volkswagenag.com/Retail/AfterSalesPreRequestSubmissionService/V1/AfterSalesPreRequestSubmissionServicePortType/ProcessAliveTest</wsa:Action>
+		<wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">uuid:216cbb16-a3b7-4889-bbb5-62b470fe9d76</wsa:MessageID>
+		<vwa:Country wsa:isReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">US</vwa:Country>
+		<vwa:Brand wsa:isReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">A</vwa:Brand>
+		<vwa:Stage wsa:isReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">QualityAssurance</vwa:Stage>
+		<wsa:From xmlns:wsa="http://www.w3.org/2005/08/addressing">
+			<wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+			<wsa:ReferenceParameters>
+				<vwa:Country xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">US</vwa:Country>
+				<vwa:Brand xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">A</vwa:Brand>
+				<vwa:Stage xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">QualityAssurance</vwa:Stage>
+				<vwa:System xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">FDI</vwa:System>
+			</wsa:ReferenceParameters>
+		</wsa:From>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<ns12:ProcessAliveTest xmlns="http://xmldefs.volkswagenag.com/DD/BusinessPartner/Ref/V1" xmlns:ns10="http://xmldefs.volkswagenag.com/DD/Vehicle" xmlns:ns11="http://xmldefs.volkswagenag.com/DD/VehicleStatus/V1" xmlns:ns12="http://xmldefs.volkswagenag.com/Retail/AfterSalesPreRequestSubmissionService/V1" xmlns:ns2="http://xmldefs.volkswagenag.com/DD/Commons" xmlns:ns3="http://xmldefs.volkswagenag.com/DD/Contract/Ref/V1" xmlns:ns4="http://xmldefs.volkswagenag.com/DD/Contract/V1" xmlns:ns5="http://xmldefs.volkswagenag.com/DD/Vehicle/Ref/V1" xmlns:ns6="http://xmldefs.volkswagenag.com/DD/CustomerServiceRequest/Ref/V1" xmlns:ns7="http://xmldefs.volkswagenag.com/DD/CustomerServiceRequest/V2" xmlns:ns8="http://xmldefs.volkswagenag.com/DD/VehicleStatus/Ref/V1" xmlns:ns9="http://xmldefs.volkswagenag.com/DD/MaintenanceEvent/V1"/>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

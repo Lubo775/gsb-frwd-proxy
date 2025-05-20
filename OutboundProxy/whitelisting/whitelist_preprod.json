@@ -1,0 +1,30 @@
+{
+  "ProjectId": "gsbproxy-preprod",
+  "Allowlist": {
+    "AllowedSuffixes": {
+      "Add": [
+        "hashicorp.com",
+        "ubuntu.com",
+        "pypi.org",
+        "pythonhosted.org",
+        "elastic.co",
+        "openssl.org",
+        "nluug.nl",
+        "nginx.org",
+        "ftp.heanet.ie",
+        "curl.se"
+      ]
+    },
+    "AllowedCidrs": {
+      "Add": [
+
+      ]
+    },
+    "AllowedPorts": {
+      "Add": [
+        "80",
+        "443"
+      ]
+    }
+  }
+}

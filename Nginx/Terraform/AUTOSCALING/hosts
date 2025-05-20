@@ -1,0 +1,22 @@
+#localhost
+127.0.0.1 localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+10.186.104.88 ws-gateway-test.wob.vw.vwg
+10.186.104.92 ws-gateway-cert-test.wob.vw.vwg
+10.186.32.51 ws-gateway-qs.wob.vw.vwg
+10.186.32.49 ws-gateway-cert-qs.wob.vw.vwg
+10.186.32.50 ws-gateway.wob.vw.vwg
+10.186.32.48 ws-gateway-cert.wob.vw.vwg
+10.250.48.231 ws-gateway-test.in.audi.vwg
+10.250.48.228 ws-gateway-cert-test.in.audi.vwg
+10.250.48.232 ws-gateway-qs.in.audi.vwg
+10.250.48.229 ws-gateway-cert-qs.in.audi.vwg
+10.250.48.233 ws-gateway.in.audi.vwg
+10.250.48.230 ws-gateway-cert.in.audi.vwg

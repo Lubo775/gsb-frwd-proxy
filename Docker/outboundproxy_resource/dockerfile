@@ -1,0 +1,8 @@
+FROM alpine:3.18.3
+WORKDIR /outboundProxyResource
+COPY install.sh .
+COPY assets/* /opt/resource/
+RUN chmod u+x install.sh
+RUN ./install.sh
+RUN chmod 755 /opt/resource/*
+RUN rm -rf vault*

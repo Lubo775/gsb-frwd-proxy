@@ -1,0 +1,72 @@
+#!/bin/sh
+set -e 
+
+exec 3>&1 # make stdout available as fd 3 for the result
+exec 1>&2 # redirect all output to stderr for logging
+
+DIR=$(dirname $0)
+cd $1
+
+payload=$(mktemp $TMPDIR/outbound-proxy-credentials-resource-out-request.XXXXXX)
+cat > "$payload" <&0
+echo "$payload"
+exitcode=0
+
+###############################################################################################################
+
+export AWS_ACCESS_KEY_ID=$(jq -r '.params.AWS_ACCESS_KEY_ID // ""' < "$payload")
+test -z "$AWS_ACCESS_KEY_ID" && { echo 'missing param: "AWS_ACCESS_KEY_ID"'; exitcode=1; }
+
+export AWS_SECRET_ACCESS_KEY=$(jq -r '.params.AWS_SECRET_ACCESS_KEY // ""' < "$payload")
+test -z "$AWS_SECRET_ACCESS_KEY" && { echo 'missing param: "AWS_SECRET_ACCESS_KEY"'; exitcode=1; }
+
+export AWS_SESSION_TOKEN=$(jq -r '.params.AWS_SESSION_TOKEN // ""' < "$payload")
+test -z "$AWS_SESSION_TOKEN" && { echo 'missing param: "AWS_SESSION_TOKEN"'; exitcode=1; }
+
+export AWS_DEFAULT_REGION=$(jq -r '.params.AWS_DEFAULT_REGION // ""' < "$payload")
+test -z "$AWS_DEFAULT_REGION" && { echo 'missing param: "AWS_DEFAULT_REGION"'; exitcode=1; }
+
+export PROXY_ID=$(jq -r '.params.PROXY_ID // ""' < "$payload")
+test -z "$PROXY_ID" && { echo 'missing param: "PROXY_ID"'; exitcode=1; }
+
+export org_scope=$(jq -r '.params.org_scope // ""' < "$payload")
+test -z "$org_scope" && { echo 'missing param: "org_scope"'; exitcode=1; }
+
+export func_scope=$(jq -r '.params.func_scope // ""' < "$payload")
+test -z "$func_scope" && { echo 'missing param: "func_scope"'; exitcode=1; }
+
+export module_name=$(jq -r '.params.module_name // ""' < "$payload")
+test -z "$module_name" && { echo 'missing param: "module_name"'; exitcode=1; }
+
+export environment=$(jq -r '.params.environment // ""' < "$payload")
+test -z "$environment" && { echo 'missing param: "environment"'; exitcode=1; }
+
+export VAULT_ADDR=$(jq -r '.params.vault_addr // ""' < "$payload")
+test -z "$VAULT_ADDR" && { echo 'missing param: "vault_addr"'; exitcode=1; }
+
+export VAULT_TOKEN=$(jq -r '.params.vault_token // ""' < "$payload")
+test -z "$VAULT_TOKEN" && { echo 'missing param: "vault_token"'; exitcode=1; }
+
+export concourse_name=$(jq -r '.source.concourse_name // ""' < "$payload")
+test -z "$concourse_name" && { echo 'missing param: "concourse_name"'; exitcode=1; }
+
+export concourse_team=$(jq -r '.source.concourse_team // ""' < "$payload")
+test -z "$concourse_team" && { echo 'missing param: "concourse_team"'; exitcode=1; }
+
+verify=$(jq -r '.source.verify // "true"' < $payload)
+if [ "$verify" != "true" ] ; then
+  echo "using non-verified connection to Vault"; export skip_verify="-tls-skip-verify"
+else
+  echo "using *verified* connection to Vault"
+fi
+
+###############################################################################################################
+ 
+#get Vault CA cert for secure connection to Vault
+$DIR/get-vault-ca.sh
+
+$DIR/op-creds.sh
+
+jq -n '{
+  version: { "ref": "outbound-proxy-resource" }
+}' >&3

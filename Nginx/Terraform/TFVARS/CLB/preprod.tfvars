@@ -1,0 +1,2 @@
+# CIDR block for the security group of nginx instance - temporary until replaced with security groups
+corebe_vpc_cidr = ["11.221.48.0/20", "11.221.32.0/20", "11.221.16.0/20", "11.221.0.0/20", "11.221.64.0/20"]

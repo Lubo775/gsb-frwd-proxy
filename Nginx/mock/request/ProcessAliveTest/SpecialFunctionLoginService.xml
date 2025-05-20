@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<WSCorIDSOAPHeader CorID="F20054E2C0A8047C3A3E4AFF0D7B2D18,1:1,0,0,,,AgAAAShIQgAAAAFGAAAAAQAAABFqYXZhLnV0aWwuSGFzaE1hcAAAAARIQgAAAAJGAAAAAgAAABBqYXZhLmxhbmcuU3RyaW5nAApUeG5UcmFjZUlkSEIAAAADRQAAAAIAJEYxREQxN0VEQzBBODA0N0MzQTNFNEFGRjIxRTcxMjEyMTA4NEhCAAAABEUAAAACABNDYWxsZXIgQ29tcG9uZW50IElESEIAAAAFRQAAAAIAATFIQgAAAAZFAAAAAgAPQ2FsbGVyVGltZXN0YW1wSEIAAAAHRQAAAAIADTE1NDE2NTgzOTk5NzBIQgAAAAhFAAAAAgARVXBzdHJlYW1HVUlEQ2FjaGVIQgAAAAlGAAAAAwAAABNqYXZhLnV0aWwuQXJyYXlMaXN0AAAAAA==" xmlns="http://www.ca.com/apm"/>
+		<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing">ws://volkswagenag.com/Supplier/SpecialFunctionLoginService/V1</wsa:To>
+		<wsa:Action SOAP-ENV:mustUnderstand="1" xmlns:wsa="http://www.w3.org/2005/08/addressing">http://xmldefs.volkswagenag.com/Supplier/SpecialFunctionLoginService/V1/SpecialFunctionLoginServicePortType/ProcessAliveTest</wsa:Action>
+		<wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">uuid:afcc5b1a-4823-4dc9-b88f-5c73dc225a60</wsa:MessageID>
+		<vwa:Country wsa:isReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">DE</vwa:Country>
+		<vwa:Brand wsa:isReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">A</vwa:Brand>
+		<vwa:Stage wsa:isReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">QualityAssurance</vwa:Stage>
+		<wsa:From xmlns:wsa="http://www.w3.org/2005/08/addressing">
+			<wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+			<wsa:Metadata>
+				<vwm:XTraceID xmlns:vwm="http://xmldefs.volkswagenag.com/Technical/Addressing/Metadata/V1">RLU-mbbb-86040-rlu-1541658399942-20891-ADE</vwm:XTraceID>
+			</wsa:Metadata>
+			<wsa:ReferenceParameters>
+				<vwa:Country xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">DE</vwa:Country>
+				<vwa:Brand xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">A</vwa:Brand>
+				<vwa:Stage xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">QualityAssurance</vwa:Stage>
+				<vwa:System xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1">MBB</vwa:System>
+			</wsa:ReferenceParameters>
+		</wsa:From>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<ns2:ProcessAliveTest xmlns="http://xmldefs.volkswagenag.com/DD/Commons" xmlns:ns2="http://xmldefs.volkswagenag.com/Supplier/SpecialFunctionLoginService/V1"/>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

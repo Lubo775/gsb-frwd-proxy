@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing">ws://volkswagenag.com/CSP/AfterSales/VehicleLifecycleService/V1</wsa:To>
+		<vwa:Brand wsa:IsReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">A</vwa:Brand>
+		<vwa:Country wsa:IsReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">DE</vwa:Country>
+		<wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">urn:uuid:f84e7f4f-9674-4a8e-b0a1-17c49bf20c0d</wsa:MessageID>
+		<wsa:Action xmlns:wsa="http://www.w3.org/2005/08/addressing">http://xmldefs.volkswagenag.com/CSP/AfterSales/VehicleLifecycleService/V1/VehicleLifecycleServicePortType/GetEntry</wsa:Action>
+		<vwa:Priority wsa:IsReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">NORMAL</vwa:Priority>
+	</SOAP-ENV:Header>
+	<S:Body>
+		<ns3:GetEntry xmlns="http://xmldefs.volkswagenag.com/DD/Vehicle" xmlns:ns2="http://xmldefs.volkswagenag.com/DD/Vehicle/Ref/V1" xmlns:ns3="http://xmldefs.volkswagenag.com/CSP/AfterSales/VehicleLifecycleService/V1" xmlns:ns4="http://xmldefs.volkswagenag.com/DD/Commons" xmlns:ns5="http://xmldefs.volkswagenag.com/DD/BusinessPartner/Ref/V1" xmlns:ns6="http://xmldefs.volkswagenag.com/DD/WarrantyExclusionSign/Ref/V1" xmlns:ns7="http://xmldefs.volkswagenag.com/DD/WarrantyExclusionSign/V1">
+			<ns2:VehicleRef>
+				<ns2:VIN>WVGZZZ5NZHW917163</ns2:VIN>
+			</ns2:VehicleRef>
+		</ns3:GetEntry>
+	</S:Body>
+</S:Envelope>

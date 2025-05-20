@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+	<soapenv:Header>
+		<wsa:MessageID>@@MessageID@@</wsa:MessageID>
+		<wsa:RelatesTo>@@RelatesTo@@</wsa:RelatesTo>
+		<wsa:Action>http://xmldefs.volkswagenag.com/CSP/AfterSales/VehicleLifecycleService/V1/VehicleLifecycleServicePortType/Fault/Fault</wsa:Action>
+		<wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+	</soapenv:Header>
+	<soapenv:Body>
+		<soapenv:Fault>
+			<faultcode>soap:Server</faultcode>
+			<faultstring>Fahrgestellnummer ist unbekannt</faultstring>
+			<faultactor>CRP</faultactor>
+			<detail>
+				<NS1:Fault xmlns:NS1="http://xmldefs.volkswagenag.com/DD/Commons">
+					<NS1:FaultBasic>
+						<NS1:FaultSystem>CRP</NS1:FaultSystem>
+						<NS1:FaultClass>business</NS1:FaultClass>
+						<NS1:FaultCode>8001</NS1:FaultCode>
+						<NS1:FaultLevel>W</NS1:FaultLevel>
+						<NS1:FaultID>X'b480d82f34cb4e93a36930cbbc3d80f20000000000000000'</NS1:FaultID>
+						<NS1:FaultTimestamp>2018-12-20T12:14:15.906+01:00</NS1:FaultTimestamp>
+						<NS1:FaultDescription>Fahrgestellnummer ist unbekannt</NS1:FaultDescription>
+						<NS1:FaultCodeDetails>
+							<NS1:Param>
+								<NS1:ParamName>VCS_MSGID</NS1:ParamName>
+								<NS1:ParamValue>DSFW05</NS1:ParamValue>
+							</NS1:Param>
+							<NS1:Param>
+								<NS1:ParamName>MSGTEXT</NS1:ParamName>
+								<NS1:ParamValue>Fahrgestellnummer ist unbekannt</NS1:ParamValue>
+							</NS1:Param>
+							<NS1:Param>
+								<NS1:ParamName>VIN</NS1:ParamName>
+								<NS1:ParamValue>@@VIN@@</NS1:ParamValue>
+							</NS1:Param>
+						</NS1:FaultCodeDetails>
+					</NS1:FaultBasic>
+				</NS1:Fault>
+			</detail>
+		</soapenv:Fault>
+	</soapenv:Body>
+</soapenv:Envelope>

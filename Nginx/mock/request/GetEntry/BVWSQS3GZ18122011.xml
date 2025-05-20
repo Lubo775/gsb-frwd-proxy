@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<S:Header>
+		<wsa:Action xmlns:wsa="http://www.w3.org/2005/08/addressing">http://xmldefs.volkswagenag.com/CSP/AfterSales/VehicleLifecycleService/V1/VehicleLifecycleServicePortType/GetEntry</wsa:Action>
+		<vwa:Brand wsa:IsReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">V</vwa:Brand>
+		<vwa:Country wsa:IsReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">DE</vwa:Country>
+		<wsa:From xmlns:wsa="http://www.w3.org/2005/08/addressing">
+			<wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+			<wsa:Metadata>
+				<vwm:XTraceID xmlns:vwm="http://xmldefs.volkswagenag.com/Technical/Addressing/Metadata/V1">MBBCMGMT-mbbc85805mgm-1545303968317-26669-XXX</vwm:XTraceID>
+			</wsa:Metadata>
+			<wsa:ReferenceParameters/>
+		</wsa:From>
+		<wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">urn:uuid:b480d82f-34cb-4e93-a369-30cbbc3d80f2</wsa:MessageID>
+		<vwa:Stage wsa:IsReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing"/>
+		<vwa:System wsa:IsReferenceParameter="true" xmlns:vwa="http://xmldefs.volkswagenag.com/Technical/Addressing/V1" xmlns:wsa="http://www.w3.org/2005/08/addressing">FSH</vwa:System>
+		<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing">ws://xmldefs.volkswagenag.com/CSP/AfterSales/VehicleLifecycleService/V1</wsa:To>
+	</S:Header>
+	<S:Body>
+		<ns3:GetEntry xmlns="http://xmldefs.volkswagenag.com/DD/Vehicle" xmlns:ns2="http://xmldefs.volkswagenag.com/DD/Commons" xmlns:ns3="http://xmldefs.volkswagenag.com/CSP/AfterSales/VehicleLifecycleService/V1" xmlns:ns4="http://xmldefs.volkswagenag.com/DD/Vehicle/Ref/V1" xmlns:ns5="http://xmldefs.volkswagenag.com/DD/BusinessPartner/Ref/V1" xmlns:ns6="http://xmldefs.volkswagenag.com/DD/WarrantyExclusionSign/Ref/V1" xmlns:ns7="http://xmldefs.volkswagenag.com/DD/WarrantyExclusionSign/V1">
+			<ns4:VehicleRef>
+				<ns4:VIN>BVWSQS3GZ18122011</ns4:VIN>
+			</ns4:VehicleRef>
+		</ns3:GetEntry>
+	</S:Body>
+</S:Envelope>

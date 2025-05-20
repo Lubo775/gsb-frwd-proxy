@@ -1,0 +1,282 @@
+# --------------------------------------------------
+# Purpose:
+# - Program configuration for Renew Certificate Client (TCRP, Technical Certificate Renewal Portal)
+# 
+# Release:
+# - v1.6.1 - 2023-05-04: corresponding to main release
+#
+# Contact:
+# K-DSO/2 | Authentication & Encryption Services
+# Group Information Security
+# Volkswagen Aktiengesellschaft
+# 38436 Wolfsburg
+# Mail: pki@volkswagen.de
+#
+# Remarks:
+# - do not use tabs or unnecessary white spaces in YAML files
+# - TCRP can be used via:
+#   + Intranet (typical usage)
+#   + Internet (special usage)
+#
+# Intranet usage:
+# - certificate offered by TCRP service (Registration Authority) is issued by VW Office PKI
+# - as of 2023/01 this is:
+#   + issuer = "VW-CA-PROC-08"
+#   + root   = "VW-CA-ROOT-05"
+# - search in this configuration file for string 'Intranet'
+#
+# Internet usage:
+# - internet usage requires mTLS connection with dedicated client certificate
+# - client certificate must be additional authorized in TCRP infrastructure
+# - (optional) Internet proxy can be set via environment variable "HTTPS_PROXY"
+# - HTTPS_PROXY=http://USERNAME:PASSWORD@proxy-server.mycorp.com:3128
+# - certificate offered by TCRP infrastructure (LTM/F5) is issued by public certificate provider
+# - as of 2023/01 this is:
+#   + issuer = "QuoVadis Global SSL ICA G3"
+#   + root   = "QuoVadis Root CA2 G3"
+# - search in this configuration file for string 'Internet'
+#
+# Directory structure:
+# - certs        : certificates you plan to renew
+# - renewedcerts : via TCRP renewed certificates
+# - clientcerts  : client certificate for mTLS Internet connection (not required for Intranet)
+# - servercerts  : issuer chains of offered TCRP server certificates
+#
+# TCRP URLs:
+# - QA Intranet   : https://tcrp-qs.qs2x.vwg:443
+# - QA Internet   : https://tcrp-qs.vwgroup.com:443
+# - PROD Intranet : see TCRP wiki page
+# - PROD Internet : see TCRP wiki page
+#
+# TCRP integration:
+# - Always test against quality assurance (qa/qs), never against production (prod)!
+# - You can renew as much certificates as needed for your TCRP integration work flow.
+# - After you are done, it's typical only required to switch the URL from QA to PROD.
+#
+# Links:
+# - https://group-wiki.wob.vw.vwg/wikis/pages/viewpage.action?pageId=1504581982
+#
+# Note:
+# The generated private key for the certificate is to be regarded as secret according to the security
+# classification. Protect it from unauthorized access in accordance with the security regulations!
+# --------------------------------------------------
+
+# general settings section
+# ------------------------
+
+# logfile of Certificate Client ('stdout' if not specified)
+ClientLogfile: vwcc.log
+
+# log options
+LogHTTPRequestBody: true
+LogHTTPResponseBody: true
+
+# client request timeout in seconds
+# recommendation: 120
+ClientRequestTimeout: 120
+
+# server URL (address of Registration Authority [certificate renewal server])
+# Intranet: https://tcrp-qs.qs2x.vwg:443
+# Internet: https://tcrp-qs.vwgroup.com:443
+ServerURL: https://tcrp.b2x.vwg:443
+
+# server certificate (optional)
+# - option 1: issuer(s) of TCRP server certificate exists in system cert pool -> empty entry
+#   ServerCertificate:
+# - option 2: issuer(s) of TCRP server certificate doesn't exist in system cert pool -> specify file with issuer chain
+#   ServerCertificate: ./servercerts/vw-ca-root-05.crt
+# - option 3: we are happy with any TCRP server certificate -> use constant INSECURE
+#   ServerCertificate: INSECURE
+# Intranet: ./servercerts/vw-ca-root-05.crt
+# Internet: ./servercerts/QuoVadis-Root-CA2-G3.crt
+ServerCertificate: ./tcrp-tool/servercerts/vw-ca-root-05.crt
+
+# client certificate and client private key in encrypted P12 container (optional)
+# only required for TCRP usage via mTLS Internet connection
+# leave this field empty if you want to use TCRP via Intranet connection
+# Intranet: leave this field empty
+# Internet: e.g. ./clientcerts/Systemuser-TCRPCLIENT-VWPKI-2B5BA0458C9D9118.p12
+ClientCertificateInFile:
+
+# client certificate and client private key input password for decryption of P12 container (optional)
+# only required for TCRP usage via mTLS Internet connection
+# leave this field empty if you want to use TCRP via Intranet connection
+# Intranet: leave this field empty
+# Internet: e.g. "env:ClientCertificateInPassword"
+# "env:var": obtain the password from environment variable
+# "file:pathname": the first line of pathname is the password
+# "pass:password": the actual password is password (security risk, not recommended)
+ClientCertificateInPassword:
+
+# certificate remaining time in days (days left on certificate to renew it)
+# renewal only starts, if actual certificate remaining is less than specified
+# recommendation: 90
+# hint: use high value (eg. 9999) to force renewal process
+CertificateRemainingTime: 92
+
+# number of days new certificate should be valid
+# CA/Browser Forum defines 397 days (13 month) as max value for usage in Browsers
+DaysCertificateValid: 365
+
+# algorithm for new private key (RSA2048, RSA4096, RSA8192, ECDSA256, ECDSA384)
+# recommendation: RSA4096 or ECDSA384
+PrivateKeyAlgorithm: RSA2048
+
+# meta data section
+# -----------------
+
+# email address for reminding or notification (typical group address of admin team)
+EmailRemindingAddress: vwgs_gitc_operations_gsbproxy@volkswagen-groupservices.com
+
+# requestor
+Requestor:
+  UserName: EWUSCHK
+  LastName: Wuschke
+  GivenName: Martin
+  Email: martin.wuschke@volkswagen.de
+
+# cost center
+CostCenter:
+  Name: L-GIT-P/3
+# cost centre number is going to change in January to 1883, to be verified exact time
+  Number: 1804
+  Company: Volkswagen AG
+  Manager:
+    UserName: DL10FHT
+    LastName: Franke
+    GivenName: Herbert
+    Email: herbet.franke@volkswagen.de
+
+# service center group ident
+ServiceCenterGroup: GITC GSB Proxy Support VW Group
+
+# VW application identifier (AppID, PlanningIT Application ID)
+#LEAN-IX ID for GSBProxy: 79608
+AppID: 79608
+
+# VW configuration item (CI)
+#GSB Proxy PROD CI: CI00763998
+#GSB Proxy PREPROD CI: CI00763981
+#Plint uses same as PREPROD
+CI: CI00763998
+
+# custom configuration item (use this only if an official VW CI doesn't exists)
+CustomCI:
+
+# TrustStore setting
+# ------------------
+# a) FileSystem: certificate and private key are stored in file system
+# b) WindowsCertificateStore: certificate and private key are stored in Windows Certificate Store
+# c) HSM: certificate and private key are stored in High Security Module
+# For example, if a) is set, the sections for b) and c) are irrelevant.
+TrustStore: FileSystem
+
+# TrustStore "FileSystem" section
+# -------------------------------
+
+# input certificate section
+
+# input format (PEM, P12)
+InFormat: PEM
+
+# input format PEM: certificate to renew (PEM-encoded certificate)
+InCertificate: ./gsbproxy-certificates/old/client_or_server_cert.pem
+
+# input format PEM: private key of 'certificate to renew' (PEM-encoded key, always ensure security of private key)
+# supported key algorithms: RSA, ECDSA
+InPrivateKey: ./gsbproxy-certificates/old/client_or_server_cert.key
+
+# input format P12: certificate and private key in encrypted P12 container
+InFile:
+
+# input format P12: password for decryption of P12 container
+# "env:var": obtain the password from environment variable
+# "file:pathname": the first line of pathname is the password 
+# "pass:password": the actual password is password (security risk, not recommended)
+InPassword:
+
+# output certificate section
+
+# output format (PEM, P12)
+OutFormat: PEM
+
+# output format PEM: renewed certificate
+OutCertificate: ./gsbproxy-certificates/new/client_or_server_cert.pem
+
+# output format PEM: private key of 'renewed certificate' (PEM-encoded key, always ensure security of private key)
+OutPrivateKey: ./gsbproxy-certificates/new/client_or_server_cert.key
+
+# output format P12: certificate and private key in encrypted P12 container
+OutFile:
+
+# output format P12: password for encryption of P12 container
+# "env:var": obtain the password from environment variable
+# "file:pathname": the first line of pathname is the password 
+# "pass:password": the actual password is password (security risk, not recommended)
+OutPassword:
+
+# TrustStore "WindowsCertificateStore" section
+# --------------------------------------------
+
+# name of windows certificate store
+# default is "MY" (user certificates)
+WindowsStoreName: MY
+
+# name of windows certificate/key store location
+# CERT_SYSTEM_STORE_CURRENT_USER
+# CERT_SYSTEM_STORE_LOCAL_MACHINE
+# <other store name from Windows API>
+# Default is CERT_SYSTEM_STORE_CURRENT_USER.
+WindowsStoreLocation: CERT_SYSTEM_STORE_CURRENT_USER
+
+# name of windows cryptographic service provider (csp)
+# default is "Microsoft Software Key Storage Provider"
+WindowsCSP: Microsoft Software Key Storage Provider
+
+# name of windows certificate specification
+# <cn>                a simple string is interpreted as common name (CN) (e.g. "testserver.vw.vwg")
+# CN:<cn>             literal CN: followed by CN (e.g. "CN:testserver.vw.vwg")
+# CNI:<cn>:<issuerCN> literal CNI: followed by CN and issuer CN prefix (to select specific CA) (e.g. "CNI:testserver.vw.vwg:VW-CA-OTHR")
+# ISSUERCN:<issuerCN> literal ISSUERCN followed by CN of issuing CA (e.g. "ISSUERCN:VW-TEST-CA-PROC-05")
+# SHA1:<hash>         literal SHA1: followed by SHA1 certificate fingerprint (e.g. "SHA1:d23bae15bf7a09711b0054979bf543b5bd80790b")
+WindowsCertificateSpecification: CN:tcrp-example
+
+# name and path to interface program (Windows: .\tcrp-win.exe)
+WindowsStoreInterfaceProgram: .\tcrp-win.exe
+
+# TrustStore "HSM" (High Security Module) section
+# -----------------------------------------------
+
+# path to PKCS#11 dynamic link library
+HSMLibrary: ./libcs_pkcs11_R3.so
+
+# specification / number of HSM slot with certificate / private key
+HSMSlot: 42
+
+# user PIN (Personal Identification Number) for HSM access
+# "env:var": obtain the pin from environment variable
+# "file:pathname": the first line of pathname is the pin
+# "pin:personal-identification-number": the actual pin is pin (security risk, not recommended)
+HSMUserPIN: env:GHA
+
+# name of HSM certificate specification
+# <cn>                a simple string is interpreted as common name (CN) (e.g. "testserver.vw.vwg")
+# CN:<cn>             literal CN: followed by CN (e.g. "CN:testserver.vw.vwg")
+# CNI:<cn>:<issuerCN> literal CNI: followed by CN and issuer CN prefix (to select specific CA) (e.g. "CNI:testserver.vw.vwg:VW-CA-OTHR")
+# ISSUERCN:<issuerCN> literal ISSUERCN followed by CN of issuing CA (e.g. "ISSUERCN:VW-TEST-CA-PROC-05")
+# CKA_ID:id           literal CKA_ID: followed by ID (e.g. "CKA_ID:123454", "CKA_ID:0x313233343534")
+# CKA_LABEL:label     literal CKA_LABEL: followed by LABEL (e.g. "CKA_LABEL:TestCert1")
+HSMCertificateSpecification: CKA_ID:tcrp-be03699a-0716-40e4-8ba8-c7f152072d98
+
+# verbose log output for HSM calls
+HSMVerboseOutput: false
+
+# (existing) path to store duplicate of renewed certificate in file system
+# renewed certificate is always stored in HSM
+# leave path empty if duplicate is not necessary 
+# naming schema of duplicate: CKA_ID.crt (e.g. tcrp-e50e9ac6-df0c-46e6-aa2c-39fa2b5ec2bc.crt)
+HSMCertificateDuplicatePath: ./renewedcerts
+
+# name and path to interface program (Windows: .\tcrp-hsm.exe, Linux: ./tcrp-hsm)
+HSMInterfaceProgram: ./tcrp-hsm
+

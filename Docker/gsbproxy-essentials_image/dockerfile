@@ -1,0 +1,7 @@
+FROM alpine:3.18.3
+WORKDIR /gsbProxyDockerImage
+COPY install.sh .
+COPY LicenseNotes_VWAG-4450-01_GSB-Proxy_1.3.0.pdf ./Licenses/
+RUN chmod u+x install.sh
+RUN ./install.sh
+RUN rm -rf vault* packer_*.zip terraform.zip
